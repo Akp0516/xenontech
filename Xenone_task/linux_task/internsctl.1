@@ -1,0 +1,59 @@
+.TH INTERNSCTL 1 "2023-11-15" "v0.1.0" "InternsCTL Manual"
+.SH NAME
+internsctl \- custom Linux command
+
+.SH SYNOPSIS
+.B internsctl
+[\fIOPTION\fP]... \fI[COMMAND [SUBCOMMAND] [OPTIONS] [ARGUMENTS]\fP]...
+
+.SH DESCRIPTION
+InternsCTL is a custom Linux command for various system operations.
+
+
+.SH OPTIONS
+.TP
+\fB\-\-version\fP
+Display the command version.
+
+.TP
+\fB\-\-help\fP
+Display help documentation.
+
+.SH COMMANDS
+.TP
+\fBcpu getinfo\fP
+Display CPU information.
+
+.TP
+\fBmemory getinfo\fP
+Display memory information.
+
+.TP
+\fBuser create \fI<username>\fP
+Create a new user with login access.
+
+.TP
+\fBuser list \fP[\fB\-\-sudo-only\fP]
+List all regular users or users with sudo permissions.
+
+.TP
+\fBfile getinfo \fI[OPTIONS] <file-name>\fP
+Get information about a file.
+
+.SH OPTIONS FOR FILE COMMAND
+.TP
+\fB\-\-size, -s\fP
+Print the size of the specified file.
+
+.TP
+\fB\-\-permissions, -p\fP
+Print file permissions.
+
+.TP
+\fB\-\-owner, -o\fP
+Print file owner.
+
+.TP
+\fB\-\-last-modified, -m\fP
+Print last modified time.
+

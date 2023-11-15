@@ -1,0 +1,71 @@
+#!/bin/bash
+
+function get_cpu_info {
+    lscpu
+}
+
+function get_memory_info {
+    free
+}
+
+function create_user {
+    if [ -z "$1" ]; then
+        echo "Usage: internsctl user create <username>"
+        exit 1
+    fi
+
+    # Create user with a home directory
+    useradd -m "$1"
+    echo "User $1 created successfully."
+}
+
+function list_users {
+    if [ "$1" == "--sudo-only" ]; then
+        getent group sudo | cut -d: -f4
+    else
+        cut -d: -f1 /etc/passwd
+    fi
+}
+
+function get_file_info {
+    if [ -z "$2" ]; then
+        echo "Usage: internsctl file getinfo [options] <file-name>"
+        exit 1
+    fi
+
+    file_name="$2"
+
+    if [ -e "$file_name" ]; then
+        if [ "$1" == "--size" ] || [ "$1" == "-s" ]; then
+            echo "$(stat -c %s "$file_name")"
+        elif [ "$1" == "--permissions" ] || [ "$1" == "-p" ]; then
+            echo "$(stat -c %a "$file_name")"
+        elif [ "$1" == "--owner" ] || [ "$1" == "-o" ]; then
+            echo "$(stat -c %U "$file_name")"
+        elif [ "$1" == "--last-modified" ] || [ "$1" == "-m" ]; then
+            echo "$(stat -c %y "$file_name")"
+        else
+            echo "Invalid option"
+            exit 1
+        fi
+    else
+        echo "File not found: $file_name"
+        exit 1
+    fi
+}
+
+# Main command execution
+case "$1" in
+    "cpu") shift; get_cpu_info "$@";;
+    "memory") shift; get_memory_info "$@";;
+    "user") shift; case "$1" in
+        "create") shift; create_user "$@";;
+        "list") shift; list_users "$@";;
+        *) echo "Invalid user sub-command"; exit 1;;
+    esac;;
+    "file") shift; case "$1" in
+        "getinfo") shift; get_file_info "$@";;
+        *) echo "Invalid file sub-command"; exit 1;;
+    esac;;
+    *) echo "Invalid command"; exit 1;;
+esac
