@@ -29,7 +29,7 @@ cd new-linux-cmd
 ```
 
 
-## Contributing
+## Contribute...
 
 If you would like to contribute to this project, please follow these steps:
 
