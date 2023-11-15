@@ -20,11 +20,7 @@
 
 1. Clone the repository to your local machine.
 
-```bash
-git clone https://github.com/ramankumar8/Xenon-Stack/tree/main/Task2
-```
-
-3. Configure your environment variables, database, and authentication settings.
+2. Configure your environment variables, database, and authentication settings.
   -for Tomcat server.
 
 ## Contact
