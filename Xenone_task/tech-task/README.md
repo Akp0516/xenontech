@@ -21,7 +21,7 @@
 1. Clone the repository to your local machine.
 
 2. Configure your environment variables, database, and authentication settings.
-  -for Tomcat server.
+  -Use tomcat 10 as a server.
 
 ## Contact
 
